@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const msql = require("msql2");
+const msql = require("mysql2");
 const dotenv = require("dotenv");
 
 // Question 1 goes here
