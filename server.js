@@ -23,7 +23,6 @@ db.connect((err) => {
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
-// Question 4 goes here
 // Question 1 goes here
 app.get("/patients", (req, res) => {
   const getPatients =
@@ -58,6 +57,20 @@ app.get("/providers", (req, res) => {
 app.get("/patients/last-name", (req, res) => {
   const getPatientsLastName = "SELECT last_name FROM patients";
   db.query(getPatientsLastName, (err, data) => {
+    // if I have an error
+    if (err) {
+      return res.status(400).send("Failed to get patients last name", err);
+    }
+
+    // res.status(200).render('data', { data })
+    res.status(200).send(data);
+  });
+});
+
+// Question 4 goes here
+app.get("/providers/provider-specialty", (req, res) => {
+  const getProvidersSpecialty = "SELECT provider_specialty FROM providers";
+  db.query(getProvidersSpecialty, (err, data) => {
     // if I have an error
     if (err) {
       return res.status(400).send("Failed to get patients last name", err);
