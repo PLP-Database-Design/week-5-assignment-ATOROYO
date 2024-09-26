@@ -13,7 +13,6 @@ const db = msql.createConnection({
   database: process.env.DB_NAME,
 });
 
-// Question 3 goes here
 // Testing Connection
 db.connect((err) => {
   //Connection is not Successfull
@@ -47,7 +46,21 @@ app.get("/providers", (req, res) => {
   db.query(getProviders, (err, data) => {
     // if I have an error
     if (err) {
-      return res.status(400).send("Failed to get patients", err);
+      return res.status(400).send("Failed to get providers", err);
+    }
+
+    // res.status(200).render('data', { data })
+    res.status(200).send(data);
+  });
+});
+
+// Question 3 goes here
+app.get("/patients/last-name", (req, res) => {
+  const getPatientsLastName = "SELECT last_name FROM patients";
+  db.query(getPatientsLastName, (err, data) => {
+    // if I have an error
+    if (err) {
+      return res.status(400).send("Failed to get patients last name", err);
     }
 
     // res.status(200).render('data', { data })
