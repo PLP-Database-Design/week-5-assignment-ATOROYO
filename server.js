@@ -26,6 +26,19 @@ db.connect((err) => {
 });
 
 // Question 4 goes here
+// retrieve all patients
+app.get("", (req, res) => {
+  const getPatients = "SELECT first_name, last_name FROM patients";
+  db.query(getPatients, (err, data) => {
+    // if I have an error
+    if (err) {
+      return res.status(400).send("Failed to get patients", err);
+    }
+
+    // res.status(200).render('data', { data })
+    res.status(200).send(data);
+  });
+});
 
 // listen to the server
 const PORT = 3000;
