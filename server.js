@@ -4,8 +4,8 @@ const msql = require("msql2");
 const dotenv = require("dotenv");
 
 // Question 1 goes here
-app.use(express.json());
-app.use(cors());
+// app.use(express.json());
+// app.use(cors());
 dotenv.config();
 
 // Question 2 goes here
