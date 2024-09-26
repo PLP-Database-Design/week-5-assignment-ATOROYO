@@ -26,10 +26,25 @@ app.set("views", __dirname + "/views");
 
 // Question 4 goes here
 // Question 1 goes here
-app.get("", (req, res) => {
+app.get("/patients", (req, res) => {
   const getPatients =
     "SELECT patient_id, first_name last_name, date_of_birth FROM patients";
   db.query(getPatients, (err, data) => {
+    // if I have an error
+    if (err) {
+      return res.status(400).send("Failed to get patients", err);
+    }
+
+    // res.status(200).render('data', { data })
+    res.status(200).send(data);
+  });
+});
+
+// Question 2 goes here
+app.get("/providers", (req, res) => {
+  const getProviders =
+    "SELECT first_name last_name, provider_specialty FROM providers";
+  db.query(getProviders, (err, data) => {
     // if I have an error
     if (err) {
       return res.status(400).send("Failed to get patients", err);
